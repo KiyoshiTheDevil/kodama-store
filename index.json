@@ -1,0 +1,116 @@
+{
+  "schema": 1,
+  "generated": "2026-09-08",
+  "themes": [
+    {
+      "id": "nord",
+      "title": "Nord",
+      "description": "The arctic palette: cool blue-grey, lighter than Kodama's own dark.",
+      "creators": [
+        "KiyoshiTheDevil"
+      ],
+      "version": "1.0.0",
+      "minVersion": "1.0.0-alpha.38",
+      "tags": [
+        "dark",
+        "blue"
+      ],
+      "mode": "dark",
+      "preview": {
+        "bg": "#2e3440",
+        "surface": "#333b48",
+        "elevated": "#3b4252",
+        "text": "rgba(236,239,244,0.92)",
+        "accent": "#88c0d0"
+      },
+      "tokens": {
+        "--bg-base": "#2e3440",
+        "--bg-surface": "#333b48",
+        "--bg-elevated": "#3b4252",
+        "--bg-hover": "#434c5e",
+        "--surface-1": "#3b4252",
+        "--surface-2": "#4c566a",
+        "--surface-3": "#5a677d",
+        "--acrylic": "rgba(46, 52, 64, 0.84)",
+        "--stroke": "rgba(236,239,244,0.10)",
+        "--stroke-dim": "rgba(236,239,244,0.06)",
+        "--stroke-med": "rgba(236,239,244,0.18)",
+        "--t1": "rgba(236,239,244,0.92)",
+        "--t2": "rgba(236,239,244,0.62)",
+        "--t3": "rgba(236,239,244,0.42)",
+        "--t4": "rgba(236,239,244,0.22)",
+        "--slider-track": "#4c566a",
+        "--scroll-thumb": "#4c566a",
+        "--scroll-thumb-dim": "#3b4252",
+        "--scroll-thumb-hover": "#6d7a91",
+        "--status-danger": "#bf616a",
+        "--status-success": "#a3be8c",
+        "--status-warning": "#ebcb8b",
+        "--status-info": "#81a1c1",
+        "--accent": "#88c0d0"
+      }
+    },
+    {
+      "id": "paper",
+      "title": "Paper",
+      "description": "Warm off-white with ink-brown text, for reading in daylight.",
+      "creators": [
+        "KiyoshiTheDevil"
+      ],
+      "version": "1.0.0",
+      "minVersion": "1.0.0-alpha.38",
+      "tags": [
+        "light",
+        "warm"
+      ],
+      "mode": "light",
+      "preview": {
+        "bg": "#f4f1ea",
+        "surface": "#fbf9f4",
+        "elevated": "#ece8df",
+        "text": "rgba(43,34,24,0.900)",
+        "accent": "#b4551f"
+      },
+      "tokens": {
+        "--bg-base": "#f4f1ea",
+        "--bg-surface": "#fbf9f4",
+        "--bg-elevated": "#ece8df",
+        "--bg-hover": "#e2ddd2",
+        "--surface-1": "#f8f5ef",
+        "--surface-2": "#efebe2",
+        "--surface-3": "#e5e0d5",
+        "--acrylic": "rgba(244, 241, 234, 0.88)",
+        "--stroke": "rgba(58,46,32,0.10)",
+        "--stroke-dim": "rgba(58,46,32,0.06)",
+        "--stroke-med": "rgba(58,46,32,0.16)",
+        "--border": "var(--stroke)",
+        "--fill-subtle": "rgba(58,46,32,0.045)",
+        "--fill-mod": "rgba(58,46,32,0.075)",
+        "--fill-strong": "rgba(58,46,32,0.115)",
+        "--t1": "rgba(43,34,24,0.900)",
+        "--t2": "rgba(43,34,24,0.580)",
+        "--t3": "rgba(43,34,24,0.400)",
+        "--t4": "rgba(43,34,24,0.210)",
+        "--text-primary": "var(--t1)",
+        "--text-secondary": "var(--t2)",
+        "--text-muted": "var(--t3)",
+        "--slider-track": "#c9c1b2",
+        "--scroll-thumb": "#c4bcac",
+        "--scroll-thumb-dim": "#ded8cc",
+        "--scroll-thumb-hover": "#948a77",
+        "--status-danger": "#c0392b",
+        "--status-success": "#2f6f3a",
+        "--status-warning": "#a86a10",
+        "--status-info": "#1f5fa8",
+        "--elevation-1": "0 2px 8px rgba(58,46,32,0.10)",
+        "--elevation-2": "0 4px 14px rgba(58,46,32,0.14)",
+        "--elevation-3": "0 10px 24px rgba(58,46,32,0.20)",
+        "--elevation-4": "0 18px 48px rgba(58,46,32,0.26)",
+        "--elevation-5": "0 28px 70px rgba(58,46,32,0.32)",
+        "--accent": "#b4551f"
+      }
+    }
+  ],
+  "visualizer": [],
+  "equalizer": []
+}
