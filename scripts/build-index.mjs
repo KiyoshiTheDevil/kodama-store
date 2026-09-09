@@ -10,7 +10,7 @@ import { writeFileSync, readdirSync, readFileSync, existsSync } from "node:fs";
 // The oldest Kodama that can install each kind of thing. An older build has no installer to
 // receive it, and saying otherwise would offer it an Install button that does nothing.
 const THEMES_SINCE = "1.0.0-alpha.38";
-const PRESETS_SINCE = null;   // no release consumes published presets yet - see readReserved()
+const PRESETS_SINCE = "1.0.0-alpha.38";
 const WIDGETS_SINCE = null;   // same, for overlay designs
 
 const ID_OK = /^[a-z0-9][a-z0-9-]{0,63}$/;

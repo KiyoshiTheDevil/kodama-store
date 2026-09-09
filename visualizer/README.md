@@ -1,8 +1,21 @@
 # Visualizer presets
 
-Reserved. `index.json` already carries this list, so adding support is a change in the app alone.
+Live. Installable from Kodama 1.0.0-alpha.38.
 
-Until a Kodama release can install one, a `.json` file here would be published to nobody, and the
-index generator treats it as an error rather than ignoring it quietly.
+A preset lists only what it **changes**. Kodama merges it over its own defaults, so a preset that
+sets a shape and a bar count is complete, not unfinished. Keys it does not name keep their default.
 
-A preset is the same file the app exports: `{ "name", "savedAt", "config" }`.
+    {
+      "id": "neon-pulse",
+      "title": "Neon Pulse",
+      "description": "One line about what it looks like.",
+      "version": "1.0.0",
+      "tags": ["linear", "loud"],
+      "config": { "shape": "linear", "barCount": 40, "peakHold": true }
+    }
+
+Keys Kodama does not know are dropped at install time rather than stored, so a typo costs you the
+setting and nothing else. The full list of keys is `src/visualizer/defaults.js` in the app.
+
+Raise `version` when you change a published preset and the app offers an update to anyone who has
+the older one.

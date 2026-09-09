@@ -1,0 +1,9 @@
+{
+  "id": "speech",
+  "title": "Speech",
+  "description": "For podcasts and spoken word: rumble out, presence up, so voices carry at low volume.",
+  "creators": ["KiyoshiTheDevil"],
+  "version": "1.0.0",
+  "tags": ["voice"],
+  "config": { "preamp": -1, "gains": [-6, -5, -3, 0, 2, 3, 3, 2, 0, -1] }
+}

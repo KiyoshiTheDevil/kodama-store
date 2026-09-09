@@ -11,13 +11,14 @@ of the app, no tag, no release.
 | Folder | Status |
 |---|---|
 | `themes/` | Live. Installable from Kodama 1.0.0-alpha.38. |
-| `visualizer/` | Reserved. The index already carries the list, the app does not read it yet. |
-| `equalizer/` | Reserved, same. |
+| `visualizer/` | Live. Installable from Kodama 1.0.0-alpha.38. |
+| `equalizer/` | Live, same. |
 | `widgets/` | Reserved. Overlay designs from the Overlay Editor. |
 
-## Adding a theme
+## Adding something
 
-1. Write `themes/<id>.json`. Copy `themes/nord.json` and change the values.
+1. Write the file: `themes/<id>.json`, `visualizer/<id>.json` or `equalizer/<id>.json`. Copy one
+   that is already there and change the values, and read the README in that folder.
 2. `node scripts/build-index.mjs`
 3. Commit your file and the regenerated `index.json`, then open a pull request.
 
