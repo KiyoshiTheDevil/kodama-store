@@ -10,7 +10,8 @@ import { writeFileSync, readdirSync, readFileSync, existsSync } from "node:fs";
 // The oldest Kodama that can install each kind of thing. An older build has no installer to
 // receive it, and saying otherwise would offer it an Install button that does nothing.
 const THEMES_SINCE = "1.0.0-alpha.38";
-const PRESETS_SINCE = null;   // no release consumes published presets yet - see readPresets()
+const PRESETS_SINCE = null;   // no release consumes published presets yet - see readReserved()
+const WIDGETS_SINCE = null;   // same, for overlay designs
 
 const ID_OK = /^[a-z0-9][a-z0-9-]{0,63}$/;
 const TOKEN_NAME_OK = /^--[a-z0-9-]+$/;
@@ -101,13 +102,13 @@ function readThemes() {
 // the app alone. Until a release can actually install one, a file here would be published to
 // nobody - so it is an error rather than a silently ignored file.
 
-function readPresets(dir) {
+function readReserved(dir, since, sinceName, payload) {
   const found = readFolder(dir);
-  if (found.length && !PRESETS_SINCE) {
-    fail(dir, `no Kodama release installs published presets yet. Set PRESETS_SINCE in scripts/build-index.mjs when one does.`);
+  if (found.length && !since) {
+    fail(dir, `no Kodama release installs these yet. Set ${sinceName} in scripts/build-index.mjs when one does.`);
     return [];
   }
-  return found.map(({ raw }) => ({ ...common(raw, PRESETS_SINCE), config: raw.config || {} }));
+  return found.map(({ raw }) => ({ ...common(raw, since), ...payload(raw) }));
 }
 
 // ─── Writing ─────────────────────────────────────────────────────────────────
@@ -116,12 +117,14 @@ const index = {
   schema: 1,
   generated: new Date().toISOString().slice(0, 10),
   themes: readThemes(),
-  visualizer: readPresets("visualizer"),
-  equalizer: readPresets("equalizer"),
+  visualizer: readReserved("visualizer", PRESETS_SINCE, "PRESETS_SINCE", r => ({ config: r.config || {} })),
+  equalizer: readReserved("equalizer", PRESETS_SINCE, "PRESETS_SINCE", r => ({ config: r.config || {} })),
+  // An overlay design is the editor's own document, carried through as it stands.
+  widgets: readReserved("widgets", WIDGETS_SINCE, "WIDGETS_SINCE", r => ({ doc: r.doc || {} })),
 };
 
 const seen = new Set();
-for (const list of [index.themes, index.visualizer, index.equalizer]) {
+for (const list of [index.themes, index.visualizer, index.equalizer, index.widgets]) {
   for (const e of list) {
     if (seen.has(e.id)) fail(e.id, "two entries share this id");
     seen.add(e.id);
@@ -134,4 +137,4 @@ if (problems.length) {
 }
 
 writeFileSync(new URL("../index.json", import.meta.url), JSON.stringify(index, null, 2) + "\n", "utf8");
-console.log(`index.json: ${index.themes.length} themes, ${index.visualizer.length} visualizer, ${index.equalizer.length} equalizer`);
+console.log(`index.json: ${index.themes.length} themes, ${index.visualizer.length} visualizer, ${index.equalizer.length} equalizer, ${index.widgets.length} widgets`);

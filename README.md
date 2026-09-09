@@ -13,6 +13,7 @@ of the app, no tag, no release.
 | `themes/` | Live. Installable from Kodama 1.0.0-alpha.38. |
 | `visualizer/` | Reserved. The index already carries the list, the app does not read it yet. |
 | `equalizer/` | Reserved, same. |
+| `widgets/` | Reserved. Overlay designs from the Overlay Editor. |
 
 ## Adding a theme
 
