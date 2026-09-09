@@ -76,5 +76,11 @@ check. That is what review is for.
 
 ## Licence
 
-CC0 1.0. By opening a pull request you place your theme in the public domain. Your name stays in
-`creators` and is shown in the app.
+CC0 1.0, and that covers **content**: themes, presets and widget designs. By opening a pull request
+for one of those you place it in the public domain. Your name stays in `creators` and is shown in
+the app.
+
+It does **not** cover code. Extensions are software, they carry their own licence, and some of
+Kodama's own are AGPL, so nothing here should be read as placing an extension in the public domain.
+When extensions arrive, this repo will carry the index that points at them rather than their source,
+and each one keeps the licence its author gave it.
