@@ -14,6 +14,7 @@ of the app, no tag, no release.
 | `visualizer/` | Live. Installable from Kodama 1.0.0-alpha.38. |
 | `equalizer/` | Live, same. |
 | `widgets/` | Reserved. Overlay designs from the Overlay Editor. |
+| `extensions/` | Live. A manifest per extension, downloaded and installed by Kodama. |
 
 ## Adding something
 
@@ -74,6 +75,21 @@ Kodama's content policy blocks the same thing a second time, so neither check st
 
 It does **not** stop a theme from being unreadable: `--bg-base` and `--t1` both white passes every
 check. That is what review is for.
+
+## Extensions
+
+An extension is its manifest: `extensions/<id>.json`. It is downloaded and kept by whoever
+installs it, so nothing about it lives in Kodama's build.
+
+Almost nothing. Permissions come in two tiers, and the ones that reach past the sandbox, creating
+a window, calling a backend route, are honoured only for ids Kodama's own build lists. That is not
+a second opinion about review: `backend:composer` grants access to routes that exist in a
+particular Kodama version, so the build has to know about it either way. An extension asking only
+for open permissions needs no release, which is the case this arrangement exists to serve.
+
+Kodama parses the manifest with the same code it would use on a stranger's, before storing it and
+again every time it reads it. An entry edited afterwards to award itself something is refused on
+the next read, not merely on the first.
 
 ## Licence
 

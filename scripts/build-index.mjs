@@ -12,6 +12,7 @@ import { writeFileSync, readdirSync, readFileSync, existsSync } from "node:fs";
 const THEMES_SINCE = "1.0.0-alpha.38";
 const PRESETS_SINCE = "1.0.0-alpha.38";
 const WIDGETS_SINCE = null;   // same, for overlay designs
+const EXTENSIONS_SINCE = "1.0.0-alpha.38";
 
 const ID_OK = /^[a-z0-9][a-z0-9-]{0,63}$/;
 const TOKEN_NAME_OK = /^--[a-z0-9-]+$/;
@@ -37,7 +38,9 @@ function readFolder(dir) {
     }
     if (!ID_OK.test(raw.id || "")) fail(where, "id must be lowercase letters, digits and hyphens");
     else if (`${raw.id}.json` !== f) fail(where, `id "${raw.id}" does not match the filename`);
-    if (!raw.title) fail(where, "no title");
+    // A theme and a preset call it title; an extension calls itself name, because that is what
+    // Kodama's manifest parser expects. Either satisfies this.
+    if (!raw.title && !raw.name) fail(where, "no title");
     if (raw.version && !VERSION_OK.test(raw.version)) fail(where, `version "${raw.version}" is not 1.2.3 or 1.2.3-alpha.4`);
     if (raw.minVersion && !VERSION_OK.test(raw.minVersion)) fail(where, `minVersion "${raw.minVersion}" is not a version`);
     return { where, raw };
@@ -48,7 +51,7 @@ function readFolder(dir) {
 function common(raw, since) {
   return {
     id: raw.id,
-    title: raw.title || raw.id,
+    title: raw.title || raw.name || raw.id,
     description: raw.description || "",
     creators: Array.isArray(raw.creators) && raw.creators.length ? raw.creators : ["KiyoshiTheDevil"],
     version: raw.version || "1.0.0",
@@ -111,6 +114,26 @@ function readReserved(dir, since, sinceName, payload) {
   return found.map(({ raw }) => ({ ...common(raw, since), ...payload(raw) }));
 }
 
+// ─── Extensions ──────────────────────────────────────────────────────────────
+//
+// Only the fields this generator can be sure of are filled in. Everything about permissions,
+// slots and shape is Kodama's to judge, and judging it here as well would mean two checks that
+// drift apart.
+
+function readExtensions() {
+  return readFolder("extensions").map(({ where, raw }) => {
+    if (!raw.kind) fail(where, "no kind");
+    if (!Array.isArray(raw.permissions)) fail(where, "permissions must be a list, even an empty one");
+    if (!raw.apiVersion) fail(where, "no apiVersion");
+    return {
+      ...raw,
+      ...common(raw, EXTENSIONS_SINCE),
+      // common() calls it title; an extension calls itself name, and Kodama's parser expects that.
+      name: raw.name || raw.title || raw.id,
+    };
+  });
+}
+
 // ─── Writing ─────────────────────────────────────────────────────────────────
 
 const index = {
@@ -121,10 +144,14 @@ const index = {
   equalizer: readReserved("equalizer", PRESETS_SINCE, "PRESETS_SINCE", r => ({ config: r.config || {} })),
   // An overlay design is the editor's own document, carried through as it stands.
   widgets: readReserved("widgets", WIDGETS_SINCE, "WIDGETS_SINCE", r => ({ doc: r.doc || {} })),
+  // An extension is its manifest. Passed through untouched rather than reshaped here: Kodama
+  // parses it with the same code that would parse a stranger's, and a second opinion in this file
+  // would be a second place for the two to disagree.
+  extensions: readExtensions(),
 };
 
 const seen = new Set();
-for (const list of [index.themes, index.visualizer, index.equalizer, index.widgets]) {
+for (const list of [index.themes, index.visualizer, index.equalizer, index.widgets, index.extensions]) {
   for (const e of list) {
     if (seen.has(e.id)) fail(e.id, "two entries share this id");
     seen.add(e.id);
@@ -137,4 +164,4 @@ if (problems.length) {
 }
 
 writeFileSync(new URL("../index.json", import.meta.url), JSON.stringify(index, null, 2) + "\n", "utf8");
-console.log(`index.json: ${index.themes.length} themes, ${index.visualizer.length} visualizer, ${index.equalizer.length} equalizer, ${index.widgets.length} widgets`);
+console.log(`index.json: ${index.themes.length} themes, ${index.visualizer.length} visualizer, ${index.equalizer.length} equalizer, ${index.widgets.length} widgets, ${index.extensions.length} extensions`);
