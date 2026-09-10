@@ -2,8 +2,26 @@
   "id": "vocal-lift",
   "title": "Vocal Lift",
   "description": "A gentle push where voices sit, without thinning the low end the way a bass cut does.",
-  "creators": ["KiyoshiTheDevil"],
+  "creators": [
+    "Kodama"
+  ],
   "version": "1.0.0",
-  "tags": ["voice"],
-  "config": { "preamp": -2, "gains": [-2, -2, -1, 1, 3, 3, 2, 1, 0, 0] }
+  "tags": [
+    "voice"
+  ],
+  "config": {
+    "preamp": -2,
+    "gains": [
+      -2,
+      -2,
+      -1,
+      1,
+      3,
+      3,
+      2,
+      1,
+      0,
+      0
+    ]
+  }
 }

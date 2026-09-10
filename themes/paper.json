@@ -2,10 +2,15 @@
   "id": "paper",
   "title": "Paper",
   "description": "Warm off-white with ink-brown text, for reading in daylight.",
-  "creators": ["KiyoshiTheDevil"],
+  "creators": [
+    "Kodama"
+  ],
   "version": "1.0.0",
   "mode": "light",
-  "tags": ["light", "warm"],
+  "tags": [
+    "light",
+    "warm"
+  ],
   "tokens": {
     "--bg-base": "#f4f1ea",
     "--bg-surface": "#fbf9f4",

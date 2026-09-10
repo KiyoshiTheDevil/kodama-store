@@ -2,9 +2,14 @@
   "id": "hairline-ring",
   "title": "Hairline Ring",
   "description": "A dense ring of thin bars around the cover. Quiet at rest, precise when it moves.",
-  "creators": ["KiyoshiTheDevil"],
+  "creators": [
+    "Kodama"
+  ],
   "version": "1.0.0",
-  "tags": ["ring", "subtle"],
+  "tags": [
+    "ring",
+    "subtle"
+  ],
   "config": {
     "shape": "ring",
     "barCount": 120,

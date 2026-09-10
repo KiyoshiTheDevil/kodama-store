@@ -2,10 +2,15 @@
   "id": "nord",
   "title": "Nord",
   "description": "The arctic palette: cool blue-grey, lighter than Kodama's own dark.",
-  "creators": ["KiyoshiTheDevil"],
+  "creators": [
+    "Kodama"
+  ],
   "version": "1.0.0",
   "mode": "dark",
-  "tags": ["dark", "blue"],
+  "tags": [
+    "dark",
+    "blue"
+  ],
   "tokens": {
     "--bg-base": "#2e3440",
     "--bg-surface": "#333b48",

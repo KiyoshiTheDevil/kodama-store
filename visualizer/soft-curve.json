@@ -2,9 +2,14 @@
   "id": "soft-curve",
   "title": "Soft Curve",
   "description": "One smooth line instead of bars, slowed down so it drifts rather than twitches.",
-  "creators": ["KiyoshiTheDevil"],
+  "creators": [
+    "Kodama"
+  ],
   "version": "1.0.0",
-  "tags": ["frame", "calm"],
+  "tags": [
+    "frame",
+    "calm"
+  ],
   "config": {
     "shape": "frame",
     "render": "curve",

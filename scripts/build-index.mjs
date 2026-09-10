@@ -53,7 +53,7 @@ function common(raw, since) {
     id: raw.id,
     title: raw.title || raw.name || raw.id,
     description: raw.description || "",
-    creators: Array.isArray(raw.creators) && raw.creators.length ? raw.creators : ["KiyoshiTheDevil"],
+    creators: Array.isArray(raw.creators) && raw.creators.length ? raw.creators : ["Kodama"],
     version: raw.version || "1.0.0",
     minVersion: raw.minVersion || since,
     tags: Array.isArray(raw.tags) ? raw.tags : [],

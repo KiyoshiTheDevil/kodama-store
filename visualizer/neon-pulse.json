@@ -2,9 +2,14 @@
   "id": "neon-pulse",
   "title": "Neon Pulse",
   "description": "Wide gradient bars behind the cover, with peaks that hang before they fall.",
-  "creators": ["KiyoshiTheDevil"],
+  "creators": [
+    "Kodama"
+  ],
   "version": "1.0.0",
-  "tags": ["linear", "loud"],
+  "tags": [
+    "linear",
+    "loud"
+  ],
   "config": {
     "shape": "linear",
     "linearPos": "center",

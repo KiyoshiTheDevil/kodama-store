@@ -38,7 +38,7 @@ repo, and that is deliberate.
 | `mode` | yes | `dark` or `light`. Declared, never guessed: it decides which half of the component library's own colours applies, and getting it wrong gives white text on a white card. |
 | `tokens` | yes | The theme itself, see below. |
 | `description` | no | One line of store copy. |
-| `creators` | no | GitHub usernames. |
+| `creators` | no | Who made it. The project's own things are credited to Kodama, not to an account name. |
 | `version` | no | Raise it when you change a published theme, and the app offers an update to anyone who installed the older one. Defaults to `1.0.0`. |
 | `minVersion` | no | The oldest Kodama that can render it. Raise it only if you use a token that did not exist before. |
 | `tags` | no | For browsing. |

@@ -2,8 +2,26 @@
   "id": "late-night",
   "title": "Late Night",
   "description": "Both ends pulled in. Keeps quiet listening even without waking the room.",
-  "creators": ["KiyoshiTheDevil"],
+  "creators": [
+    "Kodama"
+  ],
   "version": "1.0.0",
-  "tags": ["quiet"],
-  "config": { "preamp": 0, "gains": [-3, -2, -1, 0, 1, 1, 0, -1, -3, -4] }
+  "tags": [
+    "quiet"
+  ],
+  "config": {
+    "preamp": 0,
+    "gains": [
+      -3,
+      -2,
+      -1,
+      0,
+      1,
+      1,
+      0,
+      -1,
+      -3,
+      -4
+    ]
+  }
 }

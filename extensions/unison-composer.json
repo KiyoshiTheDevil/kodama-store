@@ -7,7 +7,8 @@
   "origin": "https://composer.kiyoshi.dev",
   "entry": "/",
   "authors": [
-    "KiyoshiTheDevil"
+    "Kodama",
+    "Better Lyrics"
   ],
   "description": "The lyrics editor for Better Lyrics. Create word-synced TTML lyrics with a visual timeline, tap-to-sync, and live preview.",
   "permissions": [
