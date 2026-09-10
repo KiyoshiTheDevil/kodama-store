@@ -353,6 +353,7 @@
       "context": {
         "track": "v"
       },
+      "icon": "https://composer.kiyoshi.dev/logo.svg",
       "title": "Composer",
       "creators": [
         "KiyoshiTheDevil"

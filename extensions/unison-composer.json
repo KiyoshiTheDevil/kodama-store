@@ -6,14 +6,35 @@
   "kind": "app",
   "origin": "https://composer.kiyoshi.dev",
   "entry": "/",
-  "authors": ["KiyoshiTheDevil"],
+  "authors": [
+    "KiyoshiTheDevil"
+  ],
   "description": "Write and time lyrics against the audio Kodama extracts.",
-  "permissions": ["app:frame", "backend:composer", "appearance:read"],
+  "permissions": [
+    "app:frame",
+    "backend:composer",
+    "appearance:read"
+  ],
   "contributes": {
     "actions": [
-      { "slot": "lyrics.browser", "title": { "en": "Open Composer", "de": "Composer öffnen" } },
-      { "slot": "lyrics.missing", "title": { "en": "Write these lyrics", "de": "Diese Lyrics schreiben" } }
+      {
+        "slot": "lyrics.browser",
+        "title": {
+          "en": "Open Composer",
+          "de": "Composer öffnen"
+        }
+      },
+      {
+        "slot": "lyrics.missing",
+        "title": {
+          "en": "Write these lyrics",
+          "de": "Diese Lyrics schreiben"
+        }
+      }
     ]
   },
-  "context": { "track": "v" }
+  "context": {
+    "track": "v"
+  },
+  "icon": "https://composer.kiyoshi.dev/logo.svg"
 }
