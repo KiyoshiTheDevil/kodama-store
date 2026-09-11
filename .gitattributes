@@ -1,0 +1,5 @@
+# Extension code is checked against a SHA-256 of its bytes as GitHub serves them, and GitHub
+# serves what the repository holds. A checkout that turns LF into CRLF would hash different bytes
+# here than the app downloads there, and every checksum the generator wrote would be wrong.
+*.js   text eol=lf
+*.json text eol=lf

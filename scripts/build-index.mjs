@@ -6,6 +6,7 @@
 //
 //   node scripts/build-index.mjs
 import { writeFileSync, readdirSync, readFileSync, existsSync } from "node:fs";
+import { createHash } from "node:crypto";
 
 // The oldest Kodama that can install each kind of thing. An older build has no installer to
 // receive it, and saying otherwise would offer it an Install button that does nothing.
@@ -120,16 +121,48 @@ function readReserved(dir, since, sinceName, payload) {
 // slots and shape is Kodama's to judge, and judging it here as well would mean two checks that
 // drift apart.
 
+// Where a script URL in a manifest points inside this repo. Kodama only accepts code from here, on
+// the branch it reads the catalogue from.
+const RAW_BASE = "https://raw.githubusercontent.com/KiyoshiTheDevil/kodama-store/main/";
+
+/**
+ * The checksum of a sandboxed extension's code, as Kodama will compute it after downloading.
+ *
+ * Kodama refuses code whose hash differs from this, so this is the line between "reviewed" and
+ * "running". Hashed from the file in the repo, which is what GitHub serves. A CR anywhere is
+ * refused rather than hashed: it means the checkout converted line endings, and the file on
+ * GitHub would then not be the file hashed here (.gitattributes pins LF to prevent exactly that).
+ */
+function scriptChecksum(where, raw) {
+  if (typeof raw.script !== "string" || !raw.script.startsWith(RAW_BASE)) {
+    fail(where, `script must be a file in this repo, ${RAW_BASE}...`);
+    return "";
+  }
+  const rel = raw.script.slice(RAW_BASE.length);
+  if (rel.includes("..") || !rel.endsWith(".js")) { fail(where, `script "${rel}" is not a .js path in this repo`); return ""; }
+  const url = new URL(`../${rel}`, import.meta.url);
+  if (!existsSync(url)) { fail(where, `script ${rel} does not exist`); return ""; }
+  const bytes = readFileSync(url);
+  if (bytes.includes(0x0d)) { fail(where, `${rel} contains CR line endings; it must be LF only`); return ""; }
+  if (bytes[0] === 0xef && bytes[1] === 0xbb && bytes[2] === 0xbf) { fail(where, `${rel} starts with a BOM`); return ""; }
+  return createHash("sha256").update(bytes).digest("hex");
+}
+
 function readExtensions() {
   return readFolder("extensions").map(({ where, raw }) => {
     if (!raw.kind) fail(where, "no kind");
     if (!Array.isArray(raw.permissions)) fail(where, "permissions must be a list, even an empty one");
     if (!raw.apiVersion) fail(where, "no apiVersion");
+    // The shapes that run downloaded code carry its checksum. Written here, never by hand: a hash
+    // typed into the manifest is one more thing to forget to update.
+    const sandboxed = raw.kind === "panel" || raw.kind === "background";
+    if (raw.scriptSha256) fail(where, "scriptSha256 is written by this generator, remove it from the file");
     return {
       ...raw,
       ...common(raw, EXTENSIONS_SINCE),
       // common() calls it title; an extension calls itself name, and Kodama's parser expects that.
       name: raw.name || raw.title || raw.id,
+      ...(sandboxed ? { scriptSha256: scriptChecksum(where, raw) } : {}),
     };
   });
 }

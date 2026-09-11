@@ -316,6 +316,59 @@
   "widgets": [],
   "extensions": [
     {
+      "id": "listenbrainz",
+      "name": "ListenBrainz",
+      "version": "1.0.0",
+      "apiVersion": "1.1",
+      "minVersion": "1.0.0-alpha.40",
+      "kind": "background",
+      "authors": [
+        "Kodama"
+      ],
+      "description": "Submits what you listen to in Kodama to ListenBrainz, the open alternative to Last.fm run by MetaBrainz. Paste your user token in Settings, Extensions.",
+      "permissions": [
+        "nowplaying",
+        "storage",
+        "network",
+        "notifications"
+      ],
+      "hosts": [
+        "api.listenbrainz.org"
+      ],
+      "script": "https://raw.githubusercontent.com/KiyoshiTheDevil/kodama-store/main/extensions/listenbrainz.js",
+      "contributes": {
+        "settings": [
+          {
+            "key": "token",
+            "type": "secret",
+            "label": {
+              "en": "User token",
+              "de": "Benutzer-Token"
+            },
+            "hint": {
+              "en": "Found on listenbrainz.org under Settings, User token.",
+              "de": "Zu finden auf listenbrainz.org unter Settings, User token."
+            }
+          },
+          {
+            "key": "enabled",
+            "type": "toggle",
+            "label": {
+              "en": "Submit listens",
+              "de": "Gehörtes übermitteln"
+            },
+            "default": true
+          }
+        ]
+      },
+      "title": "ListenBrainz",
+      "creators": [
+        "Kodama"
+      ],
+      "tags": [],
+      "scriptSha256": "1d53e897a2b5920acc2df4a436c01a6cd1d210eb0a42c4dfd7e9a5bfbeeab33f"
+    },
+    {
       "id": "unison-composer",
       "name": "Composer",
       "version": "1.0.0",
