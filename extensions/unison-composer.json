@@ -12,9 +12,10 @@
   ],
   "description": "The lyrics editor for Better Lyrics. Create word-synced TTML lyrics with a visual timeline, tap-to-sync, and live preview.",
   "permissions": [
-    "app:frame",
-    "backend:composer",
-    "appearance:read"
+    "network",
+    "files",
+    "appearance",
+    "audio"
   ],
   "contributes": {
     "actions": [
